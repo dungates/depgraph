@@ -1,5 +1,6 @@
 ---
 title: "The how and why of R package dependency graphs"
+author: "Mostly @crsh, tiny bit from @dungates"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{The how and why of R package dependency graphs}
@@ -17,13 +18,13 @@ knitr::opts_chunk$set(
 Currently, `depgraph` ships only a single function that plots the dependency graph of an R package based on its `DESCRIPTION` file.
 Consider the following example.
 
-```{r fig.align = "center", fig.cap = "Dependency graph of a historic development version of the R package `multibridge`.", fig.height = 5, fig.width = 7, warning = FALSE}
-library("depgraph")
+```{r dependency-example, fig.align = "center", fig.height = 5, fig.width = 7, fig.cap = "Dependency graph of a historic development version of the R package `multibridge`.", warning = FALSE}
+library(depgraph)
 
 plot_dependency_graph(
-  pkg = multibridge_pkg
-  , suggests = FALSE
-  , option = "cividis"
+  pkg = multibridge_pkg,
+  suggests = FALSE,
+  option = "cividis"
 )
 ```
 
@@ -51,15 +52,15 @@ This resulted in a substantial reduction of indirect dependencies, as evident in
 
 ```{r fig.align = "center", fig.cap = "Dependency graph of a historic development version of the R package `multibridge` after removing `DescTools` from `Imports`.", fig.height = 5, fig.width = 7, warning = FALSE}
 multibridge_pkg$imports <- gsub(
-  "DescTools,\n"
-  , ""
-  , multibridge_pkg$imports
-  , fixed = TRUE
+  "DescTools,\n", 
+  "", 
+  depgraph::multibridge_pkg$imports, 
+  fixed = TRUE
 )
 
-plot_dependency_graph(
-  pkg = multibridge_pkg
-  , suggests = FALSE
-  , option = "cividis"
+depgraph::plot_dependency_graph(
+  pkg = depgraph::multibridge_pkg,
+  suggests = FALSE,
+  option = "cividis"
 )
 ```

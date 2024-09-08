@@ -13,6 +13,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 (devel)](https://img.shields.io/github/last-commit/crsh/depgraph/main?label=Last%20commit&logo=github&logoColor=%23FFF)
 [![GitHub bug
 issues](https://img.shields.io/github/issues/crsh/depgraph/bug?label=Bugs&logo=github&logoColor=%23FFF)](https://github.com/crsh/depgraph/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+
 <!-- badges: end -->
 
 Provides a function to plot the complete dependency graph of an R
@@ -22,8 +23,7 @@ package and helps to cut down on dependencies.
 
 <!-- 
 You can install the released version of `depgraph` from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
+&#10;``` r
 install.packages("depgraph")
 ```
 -->
@@ -55,12 +55,9 @@ plot_dependency_graph(
 <div class="figure" style="text-align: center">
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" alt="Dependency graph of a historic development version of the R package `multibridge`." width="100%" />
-
 <p class="caption">
-
 Dependency graph of a historic development version of the R package
 `multibridge`.
-
 </p>
 
 </div>
@@ -86,9 +83,22 @@ dependencies are given in the package vignette:
 vignette("depgraph", package = "depgraph")
 ```
 
+## Making an R package object
+
+To make an object like `multibridge_pkg` you can use
+`devtools::as.package`, along with the default path for an R library
+`.libPaths()` . If your R libraries are not installed at `.libPaths`
+you’ll have to find your installation location and append the package of
+interest, see an example below.
+
+``` r
+# install.packages("devtools")
+googlesheets4_pkg <- devtools::as.package(paste0(.libPaths(), "/googlesheets4"))
+```
+
 ## Package dependencies
 
-Yeah, I know…:see\_no\_evil:
+Yeah, I know…:see_no_evil:
 
 ``` r
 plot_dependency_graph(
@@ -100,12 +110,9 @@ plot_dependency_graph(
 
 <div class="figure" style="text-align: center">
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" alt="Dependency graph of `depgraph`." width="100%" />
-
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="Dependency graph of `depgraph`." width="100%" />
 <p class="caption">
-
 Dependency graph of `depgraph`.
-
 </p>
 
 </div>
